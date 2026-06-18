@@ -1,0 +1,6 @@
+product_id,product_name,category,price,avg_hourly_sales,max_hourly_sales,safety_stock,reorder_point
+101,Amul Taaza Milk 1L,Dairy & Eggs,68,2.211267605633803,7.0,15,21
+102,Maggi Noodles 4-Pack,Munchies,60,2.352112676056338,7.0,14,21
+103,Bread White regular,Bakery,45,2.1971830985915495,7.0,15,21
+104,Coca Cola 250ml,Drinks,20,2.028169014084507,7.0,15,21
+105,Rin Detergent Bar,Household,15,1.9859154929577465,7.0,16,21
