@@ -1,32 +1,43 @@
-# 🛒 Quick-Commerce Dark Store Control Tower Analytics
+# 🛒 Blinkit Dark Store Control Tower Analytics 📊
 
-An end-to-end data analytics and supply chain optimization framework designed for high-velocity dark store operations (e.g., Blinkit, Zepto, Instamart). This system processes real-time inventory telemetry, evaluates lead-time risks, and quantifies financial leakage due to out-of-stock (OOS) conditions.
+## Project Overview
+This project focuses on optimizing real-time inventory fulfillment and supply chain telemetry for high-velocity quick-commerce dark store operations (e.g., Blinkit, Zepto, Instamart). By evaluating localized lead-time risks and modeling dynamic stockout intervals, the system isolates financial leakages and automates reorder workflows to preserve a strict 10-to-20 minute delivery SLA.
 
-## 🚀 Live Production Dashboard
-*Built with Python, Plotly, and Streamlit*
-* **Dynamic KPI Summary Tiles:** Live monitoring of Revenue Leakage, Critical Stockouts, and Service Level targets.
-* **Financial Leakage Engine:** Quantifies the immediate monetary impact of stockouts to prioritize procurement batches.
-* **Dynamic Reorder Trigger Layer:** Real-time stock counts mapped dynamically against safety thresholds and Reorder Points (ROP).
+The backend engine processes operational telemetry to generate algorithmic Reorder Points (ROP) and safety stock buffers, surfacing them through an executive-level business intelligence dashboard.
 
 ---
 
-## 📐 Supply Chain & Product Logic
+## Data Engineering & Supply Chain Challenges (The "Hard" Part)
+Quick-commerce inventory dynamics move too fast for traditional daily or weekly batch replenishment. I isolated and modeled several critical localized operational constraints:
 
-To protect Blinkit's **10-minute delivery promise**, dark store inventory cannot rely on standard daily/weekly replenishment cycles. This project implements localized operations constraints:
-
-1. **Fulfillment Lead Time ($LT$):** Modeled around a tight 3-hour turnaround window for micro-warehouse delivery truck replenishment batches.
-2. **Reorder Point ($ROP$) Formula:** $$ROP = (\text{Average Daily Demand} \times Lead\ Time) + Safety\ Stock$$
-3. **Financial Leakage Multiplier:** OOS impact is quantified by scaling the cost of safety stock buffer across a high-frequency **4x daily inventory turnover** multiplier.
+* **Fulfillment Lead-Time Window ($LT$):** Modeled around a tight 3-hour turnaround truck delivery constraint from regional distribution fulfillment centers.
+* **Dynamic Reorder Trigger Layer:** Implemented algorithmic boundaries mapping live physical counts against safety thresholds to eliminate manual auditing lag and stockout gaps.
+* **Quantifying Revenue Leakage:** Isolated exactly how much potential revenue is permanently lost during down-time windows by executing demand turnover multipliers based on a 4x daily velocity matrix.
 
 ---
 
-## 📁 Repository Structure
-* `/scripts/real_dashboards.py`: Production Streamlit application code.
-* `/scripts/build_plotly_dashboards.py`: Lightweight standalone HTML component generator.
-* `/data/`: Raw and engineered inventory snapshots and targets.
+## 🛠️ Tech Stack & Data Engine
+* **Backend Core:** Python, Pandas, NumPy
+* **Operational Interface:** Streamlit Framework
+* **Visual Layer:** Interactive Plotly Dark Engine
+* **Database & Logic:** Advanced Supply Chain SQL Window Functions
 
-## 🛠️ Installation & Setup
-1. Clone this repository.
-2. Install the required dependencies:
-   ```bash
-   pip install streamlit plotly pandas
+---
+
+## 📋 Key Analytics & SQL Snippets
+One of the most critical analytics phases involved using advanced SQL window functions to partition inventory snapshots, isolate exact historical stockout intervals, and calculate preceding run-rates:
+
+```sql
+-- Partitioning snapshots to calculate inventory depletion intervals and track stockout windows
+SELECT 
+    product_id,
+    timestamp,
+    current_stock,
+    LAG(current_stock, 1) OVER (PARTITION BY product_id ORDER BY timestamp) AS previous_stock_level,
+    CASE 
+        WHEN current_stock = 0 AND LAG(current_stock, 1) OVER (PARTITION BY product_id ORDER BY timestamp) > 0 
+        THEN '🚨 Stockout Triggered'
+        ELSE 'Healthy'
+    END AS operational_status
+FROM inventory_snapshots
+ORDER BY product_id, timestamp;
