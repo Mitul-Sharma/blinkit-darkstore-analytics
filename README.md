@@ -1,24 +1,32 @@
-# Quick-Commerce Dark Store Inventory Optimization
+# 🛒 Quick-Commerce Dark Store Control Tower Analytics
 
-A data analytics project focused on minimizing **Out-of-Stock (OOS)** revenue leakage and calculating optimal **Safety Stock** thresholds for a quick-commerce (Blinkit-style) micro-warehouse.
+An end-to-end data analytics and supply chain optimization framework designed for high-velocity dark store operations (e.g., Blinkit, Zepto, Instamart). This system processes real-time inventory telemetry, evaluates lead-time risks, and quantifies financial leakage due to out-of-stock (OOS) conditions.
 
-## 📌 Business Context & Problem Statement
-In quick commerce, dark stores operate with extremely limited shelf space in high-density urban areas. 
-* Running **out of stock** on high-velocity essential items (like milk or bread) leads to immediate cart abandonment and revenue loss.
-* Overstocking leads to high inventory holding costs and perishable wastage.
-
-This project builds an automated analytics pipeline to quantify the financial damage of stockouts and determine exact **Reorder Points (ROP)** using a 3-hour fulfillment lead time framework.
+## 🚀 Live Production Dashboard
+*Built with Python, Plotly, and Streamlit*
+* **Dynamic KPI Summary Tiles:** Live monitoring of Revenue Leakage, Critical Stockouts, and Service Level targets.
+* **Financial Leakage Engine:** Quantifies the immediate monetary impact of stockouts to prioritize procurement batches.
+* **Dynamic Reorder Trigger Layer:** Real-time stock counts mapped dynamically against safety thresholds and Reorder Points (ROP).
 
 ---
 
-## 📂 Project Structure
-```text
-blinkit-darkstore-analytics/
-├── data/
-│   ├── products.csv              # Product Master data
-│   ├── inventory_snapshots.csv   # Mocked hourly dark store inventory logs
-│   └── inventory_targets.csv     # Engineered supply chain optimization metrics
-└── scripts/
-    ├── generate_data.py          # Python script simulating store transaction telemetry
-    ├── analyze_inventory.py       # SQL engine isolating OOS windows & lost revenue
-    └── optimize_supply.py        # Python script calculating Safety Stock & ROP
+## 📐 Supply Chain & Product Logic
+
+To protect Blinkit's **10-minute delivery promise**, dark store inventory cannot rely on standard daily/weekly replenishment cycles. This project implements localized operations constraints:
+
+1. **Fulfillment Lead Time ($LT$):** Modeled around a tight 3-hour turnaround window for micro-warehouse delivery truck replenishment batches.
+2. **Reorder Point ($ROP$) Formula:** $$ROP = (\text{Average Daily Demand} \times Lead\ Time) + Safety\ Stock$$
+3. **Financial Leakage Multiplier:** OOS impact is quantified by scaling the cost of safety stock buffer across a high-frequency **4x daily inventory turnover** multiplier.
+
+---
+
+## 📁 Repository Structure
+* `/scripts/real_dashboards.py`: Production Streamlit application code.
+* `/scripts/build_plotly_dashboards.py`: Lightweight standalone HTML component generator.
+* `/data/`: Raw and engineered inventory snapshots and targets.
+
+## 🛠️ Installation & Setup
+1. Clone this repository.
+2. Install the required dependencies:
+   ```bash
+   pip install streamlit plotly pandas
