@@ -1,6 +1,18 @@
-product_id,product_name,category,price
-101,Amul Taaza Milk 1L,Dairy & Eggs,68
-102,Maggi Noodles 4-Pack,Munchies,60
-103,Bread White regular,Bakery,45
-104,Coca Cola 250ml,Drinks,20
-105,Rin Detergent Bar,Household,15
+product_id,product_name,price
+101,Amul Taaza Milk 1L,74
+102,Maggi Noodles 4-Pack,60
+103,Bread White Regular,45
+104,Coca Cola 250ml,20
+105,Rin Detergent Bar,10
+106,Fortune Mustard Oil 1L,175
+107,Aashirvaad Atta 5kg,290
+108,Tata Salt 1kg,28
+109,Lay's Classic Chips,20
+110,Amul Butter 500g,275
+111,Dettol Handwash Refill,99
+112,Surf Excel 1kg,140
+113,Nescafe Classic 50g,160
+114,Bisleri Water 1L,20
+115,Cadbury Dairy Milk,40
+116,Catch Turmeric Powder,32
+117,Lizol Floor Cleaner,120
