@@ -1,6 +1,18 @@
 product_id,product_name,category,price,avg_hourly_sales,max_hourly_sales,safety_stock,reorder_point
-101,Amul Taaza Milk 1L,Dairy & Eggs,68,2.211267605633803,7.0,15,21
-102,Maggi Noodles 4-Pack,Munchies,60,2.352112676056338,7.0,14,21
-103,Bread White regular,Bakery,45,2.1971830985915495,7.0,15,21
-104,Coca Cola 250ml,Drinks,20,2.028169014084507,7.0,15,21
-105,Rin Detergent Bar,Household,15,1.9859154929577465,7.0,16,21
+101,Amul Taaza Milk 1L,Dairy & Eggs,68,2.2112,7.0,15,21
+102,Maggi Noodles 4-Pack,Munchies,60,2.3521,7.0,14,21
+103,Bread White regular,Bakery,45,2.1971,7.0,15,21
+104,Coca Cola 250ml,Drinks,20,2.0281,7.0,15,21
+105,Rin Detergent Bar,Household,15,1.9859,7.0,16,21
+106,Fortune Mustard Oil 1L,Cooking Essentials,175,1.8542,6.0,12,18
+107,Aashirvaad Atta 5kg,Cooking Essentials,290,1.9124,6.0,12,20
+108,Tata Salt 1kg,Cooking Essentials,28,1.4215,5.0,10,15
+109,Lay's Classic Chips,Munchies,20,1.5104,5.0,10,15
+110,Amul Butter 500g,Dairy & Eggs,275,1.1025,4.0,8,12
+111,Dettol Handwash Refill,Household,99,1.3841,5.0,10,15
+112,Surf Excel 1kg,Household,140,1.4012,5.0,10,15
+113,Nescafe Classic 50g,Drinks,160,1.1542,4.0,8,12
+114,Bisleri Water 1L,Drinks,20,2.9412,10.0,20,30
+115,Cadbury Dairy Milk,Munchies,40,1.4851,5.0,10,15
+116,Catch Turmeric Powder,Cooking Essentials,32,0.8541,2.0,5,8
+117,Lizol Floor Cleaner,Household,120,1.3104,5.0,10,15
